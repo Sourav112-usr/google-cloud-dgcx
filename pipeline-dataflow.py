@@ -1,4 +1,5 @@
 import apache_beam as beam
+import csv
 from apache_beam.options.pipeline_options import PipelineOptions, StandardOptions
 
 
@@ -12,7 +13,7 @@ class DataflowOptions(PipelineOptions):
 
 def transform_data(element):
     # Example: CSV -> Dict
-    fields = element.split(",")
+    fields = next(csv.reader([element])))
     return {
         "Chest_Pain": fields[0],
         "Shortness_of_Breath": fields[1],
