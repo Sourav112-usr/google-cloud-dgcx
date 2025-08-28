@@ -4,7 +4,7 @@ from apache_beam.options.pipeline_options import PipelineOptions
 
 
 class DataflowOptions(PipelineOptions):
-@classmethod
+    @classmethod
     def _add_argparse_args(cls, parser):
         parser.add_value_provider_argument("--input", type=str, help="GCS input file")
         parser.add_value_provider_argument("--output", type=str, help="BigQuery table")
