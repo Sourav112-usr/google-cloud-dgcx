@@ -19,7 +19,6 @@ def transform_data(element):
         "Fatigue": fields[2],
         "Palpitations": fields[3],
         "Dizziness": fields[4],
-        "Fatigue": fields[5],
         "age": fields[17],
         "Heart_Risk": fields[18]
     }
