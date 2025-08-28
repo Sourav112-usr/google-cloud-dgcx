@@ -43,7 +43,7 @@ def run():
             | "Transform" >> beam.Map(transform_data)
             | "Write to BigQuery" >> beam.io.WriteToBigQuery(
                 table=options.output,
-                schema="Chest_Pain:BINARY,	Shortness_of_Breath:BINARY,	Fatigue:BINARY,	Palpitations:BINARY, Dizziness:BINARY, age:INTEGER, Heart_Risk:BINARY",
+                schema="Chest_Pain:STRING,	Shortness_of_Breath:STRING,	Fatigue:STRING,	Palpitations:STRING, Dizziness:STRING, age:INTEGER, Heart_Risk:STRING",
                 write_disposition=beam.io.BigQueryDisposition.WRITE_APPEND,
                 create_disposition=beam.io.BigQueryDisposition.CREATE_IF_NEEDED,
             )
