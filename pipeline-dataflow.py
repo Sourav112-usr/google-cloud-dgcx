@@ -13,7 +13,7 @@ class DataflowOptions(PipelineOptions):
 
 def transform_data(element):
     # Example: CSV -> Dict
-    fields = next(csv.reader([element])))
+    fields = next(csv.reader([element]))
     return {
         "Chest_Pain": fields[0],
         "Shortness_of_Breath": fields[1],
