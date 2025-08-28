@@ -9,13 +9,19 @@ class DataflowOptions(PipelineOptions):
         parser.add_value_provider_argument("--output", type=str, help="BigQuery table")
 
 
+
 def transform_data(element):
     # Example: CSV -> Dict
     fields = element.split(",")
     return {
-        "id": fields[0],
-        "name": fields[1].strip().title(),
-        "age": int(fields[2]),
+        "Chest_Pain": fields[0],
+        "Shortness_of_Breath": fields[1],
+        "Fatigue": fields[2],
+        "Palpitations": fields[3],
+        "Dizziness": fields[4],
+        "Fatigue": fields[5],
+        "age": fields[17],
+        "Heart_Risk": fields[18]
     }
 
 
@@ -24,9 +30,9 @@ def run():
         save_main_session=True,
         runner="DataflowRunner",   # For local test, use DirectRunner
         project="chat-bot-dgcx",
-        region="us-central1",
-        temp_location="gs://banking-data-raw/temp/",
-        staging_location="gs://banking-data-raw/staging/",
+        region="asia-south1",
+        temp_location="gs://amazon-data-bq/temp/",
+        staging_location="gs://amazon-data-bq/staging/",
     )
 
     options = pipeline_options.view_as(DataflowOptions)
@@ -38,7 +44,7 @@ def run():
             | "Transform" >> beam.Map(transform_data)
             | "Write to BigQuery" >> beam.io.WriteToBigQuery(
                 table=options.output,
-                schema="id:STRING, name:STRING, age:INTEGER",
+                schema="Chest_Pain:BINARY,	Shortness_of_Breath:BINARY,	Fatigue:BINARY,	Palpitations:BINARY, Dizziness:BINARY, age:INTEGER, Heart_Risk:BINARY",
                 write_disposition=beam.io.BigQueryDisposition.WRITE_APPEND,
                 create_disposition=beam.io.BigQueryDisposition.CREATE_IF_NEEDED,
             )
