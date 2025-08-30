@@ -26,6 +26,7 @@ def run():
         runner="DataflowRunner",
         project="chat-bot-dgcx",
         region="asia-south1",
+        zone="asia-south1-b"
         temp_location="gs://amazon-data-bq/temp/",
         staging_location="gs://amazon-data-bq/staging/",
         # if keeping file loads, ensure this bucket matches the dataset location:
