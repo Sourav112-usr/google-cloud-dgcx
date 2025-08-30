@@ -46,11 +46,11 @@ def run():
             | "Parse" >> beam.Map(parse_csv)
             # QUICK UNBLOCK: STREAMING_INSERTS (swap to FILE_LOADS after fixing temp bucket location)
             | "Write BQ" >> beam.io.WriteToBigQuery(
-                table="chat-bot-dgcx:healthcare_heart.heart_attack_factors",
-                schema=schema,
+                table="chat-bot-dgcx:healthcare_heart.heart_attack_factors2",
+                schema='SCHEMA_AUTODETECT',
                 write_disposition=beam.io.BigQueryDisposition.WRITE_APPEND,
-                create_disposition=beam.io.BigQueryDisposition.CREATE_IF_NEEDED,
-                method=WriteToBigQuery.Method.STREAMING_INSERTS
+                create_disposition=beam.io.BigQueryDisposition.CREATE_IF_NEEDED
+              )
                 # For FILE_LOADS use:
                 # method=WriteToBigQuery.Method.FILE_LOADS,
                 # custom_gcs_temp_location="gs://bq-tmp-chat-bot-dgcx-asia/tmp",
