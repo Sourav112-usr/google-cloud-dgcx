@@ -50,10 +50,6 @@ def run():
                 schema='SCHEMA_AUTODETECT',
                 write_disposition=beam.io.BigQueryDisposition.WRITE_APPEND,
                 create_disposition=beam.io.BigQueryDisposition.CREATE_IF_NEEDED
-              )
-                # For FILE_LOADS use:
-                # method=WriteToBigQuery.Method.FILE_LOADS,
-                # custom_gcs_temp_location="gs://bq-tmp-chat-bot-dgcx-asia/tmp",
             )
         )
 
